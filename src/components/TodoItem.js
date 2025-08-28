@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./TodoItem.css";
 
 function TodoItem({ todo, onToggle, onDelete, onUpdate }) {
-  // BUG INTENTIONNEL: État d'édition manquant
+
   const [isEditing, setIsEditing] = useState(false);
   const [editData, setEditData] = useState({
     title: todo.title,
@@ -11,13 +11,13 @@ function TodoItem({ todo, onToggle, onDelete, onUpdate }) {
     dueDate: todo.dueDate || "",
   });
 
-  // BUG INTENTIONNEL: Fonction de sauvegarde manquante
+  
   const handleSave = () => {
     onUpdate(todo.id, editData);
     setIsEditing(false);
   };
 
-  // BUG INTENTIONNEL: Fonction d'annulation manquante
+
   const handleCancel = () => {
     setEditData({
       title: todo.title,

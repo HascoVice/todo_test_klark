@@ -5,21 +5,25 @@ import TodoList from "./components/TodoList";
 import TodoStats from "./components/TodoStats";
 
 function App() {
-  const [todos, setTodos] = useState(() => {
-  const saved = localStorage.getItem("todos");
-  return saved ? JSON.parse(saved) : [];
-});
-
-
-
+  const [todos, setTodos] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // faut que j'ajoute un local storage pour les listes que j'ajoute manuellement
-  
+
+// faut que j'ajoute un local storage pour les listes que j'ajoute manuellement
+
+    useEffect(() => {
+    const storedTodos = JSON.parse(localStorage.getItem('todos'));
+    if (storedTodos) {
+      setTodos(storedTodos);
+    }
+  }, []);
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
+
+
+
 
   useEffect(() => {
     fetchTodos();
